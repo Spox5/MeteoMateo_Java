@@ -1,4 +1,4 @@
-package weather.forecastFunctions;
+package weather.api;
 
 import weather.Config;
 import weather.api.Weather;

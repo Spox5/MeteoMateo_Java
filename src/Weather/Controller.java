@@ -2,7 +2,7 @@ package weather;
 
 import weather.forecastFunctions.WeatherResolver;
 import weather.readers.AutoCompleteTextField;
-import weather.forecastFunctions.OWMApiRepository;
+import weather.api.OWMApiRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

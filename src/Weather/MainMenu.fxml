@@ -19,7 +19,7 @@
          <content>
             <AnchorPane prefHeight="380.0" prefWidth="530.0">
                <children>
-                  <Label alignment="CENTER" layoutX="215.0" layoutY="7.0" prefHeight="24.0" prefWidth="122.0" text="Lokalizacja obecna:" />
+                  <Label alignment="CENTER" layoutX="190.0" layoutY="7.0" prefHeight="24.0" prefWidth="122.0" text="Lokalizacja obecna:" />
                   <AnchorPane fx:id="backgroundCurrentCity" layoutY="80.0" prefHeight="260.0" prefWidth="530.0">
                      <effect>
                         <BoxBlur height="100.0" iterations="3" width="45.0" />
@@ -106,7 +106,7 @@
          <content>
             <AnchorPane prefHeight="380.0" prefWidth="530.0">
                <children>
-                  <Label alignment="CENTER" layoutX="215.0" layoutY="7.0" prefHeight="24.0" prefWidth="122.0" text="Lokalizacja docelowa:" />
+                  <Label alignment="CENTER" layoutX="190.0" layoutY="7.0" prefHeight="24.0" prefWidth="122.0" text="Lokalizacja docelowa:" />
                   <AnchorPane fx:id="backgroundTargetCity" layoutY="80.0" prefHeight="260.0" prefWidth="530.0">
                      <effect>
                         <BoxBlur height="45.0" iterations="3" width="45.0" />
