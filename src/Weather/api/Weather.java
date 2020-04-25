@@ -1,4 +1,4 @@
-package Weather.api;
+package weather.api;
 
 public class Weather {
 

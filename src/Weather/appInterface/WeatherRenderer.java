@@ -1,4 +1,4 @@
-package Weather.appInterface;
+package weather.appInterface;
 
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;

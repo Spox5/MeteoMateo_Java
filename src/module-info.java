@@ -6,7 +6,7 @@ module TravelWeather {
     requires java.sql;
     requires gson;
     requires controlsfx;
-    exports Weather;
-    opens Weather to javafx.fxml;
+    exports weather;
+    opens weather to javafx.fxml;
 
 }

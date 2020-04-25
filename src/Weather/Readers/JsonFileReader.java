@@ -1,6 +1,4 @@
-package Weather.readers;
-
-import javafx.scene.control.Label;
+package weather.readers;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -13,12 +11,11 @@ public class JsonFileReader {
 
         try {
 
-            Reader file = Files.newBufferedReader(Paths.get(filePath));
-            return file;
+            return Files.newBufferedReader(Paths.get(filePath));
 
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return null;
     }
 }

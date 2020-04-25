@@ -1,4 +1,4 @@
-package Weather.converters;
+package weather.converters;
 
 import java.util.AbstractMap;
 import java.util.Map;

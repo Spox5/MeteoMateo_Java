@@ -1,7 +1,8 @@
-package Weather;
+package weather;
 
-import Weather.forecastFunctions.FindCity;
-import Weather.readers.AutoCompleteTextField;
+import weather.forecastFunctions.WeatherResolver;
+import weather.readers.AutoCompleteTextField;
+import weather.forecastFunctions.OWMApiRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -12,9 +13,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
-import java.util.*;
+import java.util.ResourceBundle;
 
-public class Controller implements Initializable{
+public class Controller implements Initializable {
 
     @FXML Button start = new Button();
 
@@ -62,13 +63,15 @@ public class Controller implements Initializable{
     @FXML GridPane dailyPanelTargetCity = new GridPane();
     // END FUTURE PANEL //
 
+    private WeatherResolver weatherResolver = new WeatherResolver(new OWMApiRepository());
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
 
-            AutoCompleteTextField.autoComplete(cityNameTarget, "src\\city_names.json");
-            AutoCompleteTextField.autoComplete(cityNameCurrent, "src\\city_names.json");
+            AutoCompleteTextField.autoComplete(cityNameTarget, "src/city_names.json");
+            AutoCompleteTextField.autoComplete(cityNameCurrent, "src/city_names.json");
 
         } catch (Exception e) {
             infoCurrent.setText("Plik źródłowy nie znaleziony. Skontaktuj się z autorem lub pobierz repozytorium ponownie");
@@ -78,7 +81,7 @@ public class Controller implements Initializable{
 
     public void findCurrentCity() {
 
-        FindCity.findCity("src\\city.list.min.json", currentDayCurrentCityRestHours,
+        weatherResolver.resolveWeather("src/city.list.min.json", currentDayCurrentCityRestHours,
                 dailyPanelCurrentCity, cityNameCurrent,
                 infoCurrent, currentCityCityNameLabel, currentCityDateLabel, currentCityTemperatureLabelInstrciption,
                 currentCityTemperatureLabel,
@@ -89,7 +92,7 @@ public class Controller implements Initializable{
 
     public void findTargetCity() {
 
-        FindCity.findCity("src\\city.list.min.json", currentDayTargetCityRestHours,
+        weatherResolver.resolveWeather("src/city.list.min.json", currentDayTargetCityRestHours,
                 dailyPanelTargetCity, cityNameTarget,
                 infoTarget, targetCityCityNameLabel, targetCityDateLabel, targetCityTemperatureLabelInstrciption,
                 targetCityTemperatureLabel,

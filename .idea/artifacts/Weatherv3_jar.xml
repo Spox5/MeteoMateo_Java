@@ -2,7 +2,7 @@
   <artifact type="jar" name="Weatherv3:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Weatherv3_jar</output-path>
     <root id="archive" name="Weatherv3.jar">
-      <element id="module-output" name="TravelWeather" />
+      <element id="module-output" name="MeteoMateo" />
       <element id="extracted-dir" path="C:/Program Files/Java/javafx-sdk-11.0.2/lib/javafx-swt.jar" path-in-jar="/" />
       <element id="extracted-dir" path="C:/Program Files/Java/javafx-sdk-11.0.2/lib/javafx.base.jar" path-in-jar="/" />
       <element id="extracted-dir" path="C:/Program Files/Java/javafx-sdk-11.0.2/lib/javafx.controls.jar" path-in-jar="/" />

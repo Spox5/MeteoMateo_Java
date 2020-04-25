@@ -1,4 +1,4 @@
-package Weather.converters;
+package weather.converters;
 
 import java.util.AbstractMap;
 import java.util.Map;
@@ -30,7 +30,7 @@ public class DateConverter {
             new AbstractMap.SimpleEntry<>("Dec", "grudzień")
     );
 
-    public static String dateConvert(String date) {
+    public static String convertDate(String date) {
 
         String rawDay = date.substring(0, 3);
         String convertedDayName = DAYS_MAPPING.getOrDefault(rawDay, rawDay);

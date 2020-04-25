@@ -1,4 +1,4 @@
-package Weather.readers;
+package weather.readers;
 
 import com.google.gson.Gson;
 import javafx.scene.control.TextField;
