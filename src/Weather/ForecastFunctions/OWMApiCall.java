@@ -1,8 +1,8 @@
-package Weather.ForecastFunctions;
+package Weather.forecastFunctions;
 
 import Weather.Config;
-import Weather.Converters.DateConverter;
-import Weather.Converters.WeatherDescriptionTranslator;
+import Weather.converters.DateConverter;
+import Weather.converters.WeatherDescriptionTranslator;
 import net.aksingh.owmjapis.api.APIException;
 import net.aksingh.owmjapis.core.OWM;
 import net.aksingh.owmjapis.model.CurrentWeather;
@@ -18,7 +18,6 @@ public class OWMApiCall {
 
         this.owm = new OWM(Config.getYourAPIKey());
         this.owm.setUnit(OWM.Unit.METRIC);
-        //owm.setLanguage(OWM.Language.POLISH);
 
         this.currentWeather = getCurrentWeather(id);
 
@@ -70,7 +69,7 @@ public class OWMApiCall {
 
     public String getCurrentCityDescription() {
 
-        return WeatherDescriptionTranslator.descritpionTranslate(currentWeather.getWeatherList().get(0).getDescription());
+        return WeatherDescriptionTranslator.translateDescription(currentWeather.getWeatherList().get(0).getDescription());
     }
 
 }

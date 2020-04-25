@@ -1,6 +1,6 @@
-package Weather.ForecastFunctions;
+package Weather.forecastFunctions;
 
-import Weather.Converters.DateConverter;
+import Weather.converters.DateConverter;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -41,43 +41,43 @@ public class WeatherForecast {
 
             if (!DateConverter.dateConvert(String.valueOf(owm.hourlyWeatherForecast.getDataList().get(i).getDateTime())).equals(owm.getCurrentCityDate())) {
 
-                    switch (owm.hourlyWeatherForecast.getDataList().get(i).getDateTimeText().substring(11,13)) {
+                switch (owm.hourlyWeatherForecast.getDataList().get(i).getDateTimeText().substring(11,13)) {
 
-                        case "06":
-                            VBox dailyDate = new VBox();
-                            dailyDate.setSpacing(15);
+                    case "06":
+                        VBox dailyDate = new VBox();
+                        dailyDate.setSpacing(15);
 
-                            dailyDate.setAlignment(Pos.CENTER);
-                            Separator sep = new Separator();
+                        dailyDate.setAlignment(Pos.CENTER);
+                        Separator sep = new Separator();
 
-                            Label dayDate = new Label();
-                            dayDate.setFont(Font.font("Arial", FontWeight.BOLD, 15));
-                            dayDate.setText(DateConverter.dateConvert(String.valueOf(owm.hourlyWeatherForecast.getDataList().get(i).getDateTime())));
+                        Label dayDate = new Label();
+                        dayDate.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+                        dayDate.setText(DateConverter.dateConvert(String.valueOf(owm.hourlyWeatherForecast.getDataList().get(i).getDateTime())));
 
-                            GridPane.setHalignment(dayDate, HPos.CENTER);
-                            dailyDate.getChildren().addAll(sep, dayDate);
-                            dailyPanel.add(dailyDate, 0, rowIndexDate, 5, 1);
+                        GridPane.setHalignment(dayDate, HPos.CENTER);
+                        dailyDate.getChildren().addAll(sep, dayDate);
+                        dailyPanel.add(dailyDate, 0, rowIndexDate, 5, 1);
 
-                            column = 0;
-                            getDataForNextDays(owm, dailyPanel, column, rowIndexWeather, i);
-                            column = column + 1;
-                            break;
+                        column = 0;
+                        getDataForNextDays(owm, dailyPanel, column, rowIndexWeather, i);
+                        column = column + 1;
+                        break;
 
-                        case "09":
-                        case "12":
-                        case "15":
-                            getDataForNextDays(owm, dailyPanel, column, rowIndexWeather, i);
-                            column = column + 1;
-                            break;
+                    case "09":
+                    case "12":
+                    case "15":
+                        getDataForNextDays(owm, dailyPanel, column, rowIndexWeather, i);
+                        column = column + 1;
+                        break;
 
-                        case "18":
-                            getDataForNextDays(owm, dailyPanel, column, rowIndexWeather, i);
-                            column = column + 1;
+                    case "18":
+                        getDataForNextDays(owm, dailyPanel, column, rowIndexWeather, i);
+                        column = column + 1;
 
-                            rowIndexWeather = rowIndexWeather + 2;
-                            rowIndexDate = rowIndexDate + 2;
-                            break;
-                    }
+                        rowIndexWeather = rowIndexWeather + 2;
+                        rowIndexDate = rowIndexDate + 2;
+                        break;
+                }
             }
         }
     }

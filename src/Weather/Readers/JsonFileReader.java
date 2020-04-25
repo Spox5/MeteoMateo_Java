@@ -1,4 +1,4 @@
-package Weather.Readers;
+package Weather.readers;
 
 import javafx.scene.control.Label;
 

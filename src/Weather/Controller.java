@@ -1,7 +1,7 @@
 package Weather;
 
-import Weather.ForecastFunctions.FindCity;
-import Weather.Readers.AutoCompleteTextField;
+import Weather.forecastFunctions.FindCity;
+import Weather.readers.AutoCompleteTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -41,25 +41,25 @@ public class Controller implements Initializable{
     // END FUTURE PANEL //
 
     // TARGET PANEL //
-        @FXML Label infoTarget = new Label();
-        @FXML AnchorPane backgroundTargetCity = new AnchorPane();
-        @FXML TextField cityNameTarget = new TextField();
-        @FXML Label targetCityCityNameLabel = new Label();
-        @FXML Label targetCityDateLabel = new Label();
-        @FXML Label targetCityTemperatureLabelInstrciption = new Label();
-        @FXML Label targetCityTemperatureLabel = new Label();
-        @FXML Label targetCityHumidityLabelInstrciption = new Label();
-        @FXML Label targetCityHumidityLabel = new Label();
-        @FXML Label targetCityPressureLabelInstrciption = new Label();
-        @FXML Label targetCityPressureLabel = new Label();
-        @FXML ImageView targetCityIconWeather = new ImageView();
-        @FXML Label targetCityDescriptionLabel = new Label();
+    @FXML Label infoTarget = new Label();
+    @FXML AnchorPane backgroundTargetCity = new AnchorPane();
+    @FXML TextField cityNameTarget = new TextField();
+    @FXML Label targetCityCityNameLabel = new Label();
+    @FXML Label targetCityDateLabel = new Label();
+    @FXML Label targetCityTemperatureLabelInstrciption = new Label();
+    @FXML Label targetCityTemperatureLabel = new Label();
+    @FXML Label targetCityHumidityLabelInstrciption = new Label();
+    @FXML Label targetCityHumidityLabel = new Label();
+    @FXML Label targetCityPressureLabelInstrciption = new Label();
+    @FXML Label targetCityPressureLabel = new Label();
+    @FXML ImageView targetCityIconWeather = new ImageView();
+    @FXML Label targetCityDescriptionLabel = new Label();
     //END TARGET PANEL //
 
     //TARGET FUTURE PANEL//
-        @FXML Label currentDayTargetCityRestHoursInstrciption = new Label();
-        @FXML GridPane currentDayTargetCityRestHours = new GridPane();
-        @FXML GridPane dailyPanelTargetCity = new GridPane();
+    @FXML Label currentDayTargetCityRestHoursInstrciption = new Label();
+    @FXML GridPane currentDayTargetCityRestHours = new GridPane();
+    @FXML GridPane dailyPanelTargetCity = new GridPane();
     // END FUTURE PANEL //
 
     @Override
@@ -67,8 +67,8 @@ public class Controller implements Initializable{
 
         try {
 
-        AutoCompleteTextField.autoComplete(cityNameTarget, "src\\city_names.json");
-        AutoCompleteTextField.autoComplete(cityNameCurrent, "src\\city_names.json");
+            AutoCompleteTextField.autoComplete(cityNameTarget, "src\\city_names.json");
+            AutoCompleteTextField.autoComplete(cityNameCurrent, "src\\city_names.json");
 
         } catch (Exception e) {
             infoCurrent.setText("Plik źródłowy nie znaleziony. Skontaktuj się z autorem lub pobierz repozytorium ponownie");
@@ -78,14 +78,14 @@ public class Controller implements Initializable{
 
     public void findCurrentCity() {
 
-            FindCity.findCity("src\\city.list.min.json", currentDayCurrentCityRestHours,
-                    dailyPanelCurrentCity, cityNameCurrent,
-                    infoCurrent, currentCityCityNameLabel, currentCityDateLabel, currentCityTemperatureLabelInstrciption,
-                    currentCityTemperatureLabel,
-                    currentCityHumidityLabelInstrciption, currentCityHumidityLabel, currentCityPressureLabelInstrciption, currentCityPressureLabel,
-                    currentCityIconWeather, currentCityDescriptionLabel, currentDayCurrentCityRestHoursInstrciption, backgroundCurrentCity);
+        FindCity.findCity("src\\city.list.min.json", currentDayCurrentCityRestHours,
+                dailyPanelCurrentCity, cityNameCurrent,
+                infoCurrent, currentCityCityNameLabel, currentCityDateLabel, currentCityTemperatureLabelInstrciption,
+                currentCityTemperatureLabel,
+                currentCityHumidityLabelInstrciption, currentCityHumidityLabel, currentCityPressureLabelInstrciption, currentCityPressureLabel,
+                currentCityIconWeather, currentCityDescriptionLabel, currentDayCurrentCityRestHoursInstrciption, backgroundCurrentCity);
 
-        }
+    }
 
     public void findTargetCity() {
 

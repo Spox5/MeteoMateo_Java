@@ -1,70 +1,44 @@
-package Weather.Converters;
+package Weather.converters;
+
+import java.util.AbstractMap;
+import java.util.Map;
 
 public class DateConverter {
 
-    private static String dayNameConverter(String dayName) {
+    private static Map<String, String> DAYS_MAPPING = Map.of(
+            "Mon", "Poniedziałek",
+            "Tue", "Wtorek",
+            "Wed", "Środa",
+            "Thu", "Czwartek",
+            "Fri", "Piątek",
+            "Sat", "Sobota",
+            "Sun", "Niedziela"
+    );
 
-        switch (dayName) {
-
-            case "Mon": return "Poniedziałek";
-
-            case "Tue": return "Wtorek";
-
-            case "Wed": return "Środa";
-
-            case "Thu": return "Czwartek";
-
-            case "Fri": return "Piątek";
-
-            case "Sat": return "Sobota";
-
-            case "Sun": return "Niedziela";
-
-        }
-        return null;
-    }
-
-    private static String monthNameConverter(String monthName) {
-
-        switch (monthName) {
-
-            case "Jan": return "styczeń";
-
-            case "Feb": return "luty";
-
-            case "Mar": return "marzec";
-
-            case "Apr": return "kwiecień";
-
-            case "May": return "maj";
-
-            case "Jun": return "czerwiec";
-
-            case "Jul": return "lipiec";
-
-            case "Aug": return "sierpień";
-
-            case "Sep": return "wrzesień";
-
-            case "Oct": return "październik";
-
-            case "Nov": return "listopad";
-
-            case "Dec": return "grudzień";
-        }
-        return null;
-    }
+    private static Map<String, String> MONTHS_MAPPING = Map.ofEntries(
+            new AbstractMap.SimpleEntry<>("Jan", "styczeń"),
+            new AbstractMap.SimpleEntry<>("Feb", "luty"),
+            new AbstractMap.SimpleEntry<>("Mar", "marzec"),
+            new AbstractMap.SimpleEntry<>("Apr", "kwiecień"),
+            new AbstractMap.SimpleEntry<>("May", "maj"),
+            new AbstractMap.SimpleEntry<>("Jun", "czerwiec"),
+            new AbstractMap.SimpleEntry<>("Jul", "lipiec"),
+            new AbstractMap.SimpleEntry<>("Aug", "sierpień"),
+            new AbstractMap.SimpleEntry<>("Sep", "wrzesień"),
+            new AbstractMap.SimpleEntry<>("Oct", "październik"),
+            new AbstractMap.SimpleEntry<>("Nov", "listopad"),
+            new AbstractMap.SimpleEntry<>("Dec", "grudzień")
+    );
 
     public static String dateConvert(String date) {
 
-        String convertedDayName = dayNameConverter(date.substring(0, 3));
-        String convertedMonthName = monthNameConverter(date.substring(4, 7));
+        String rawDay = date.substring(0, 3);
+        String convertedDayName = DAYS_MAPPING.getOrDefault(rawDay, rawDay);
+        String monthName = date.substring(4, 7);
+        String convertedMonthName = MONTHS_MAPPING.getOrDefault(monthName, monthName);
         String day = date.substring(8, 10);
         String year = date.substring(24);
 
-        String correctDate = convertedDayName + ", " + day + " " + convertedMonthName + " " + year;
-        return correctDate;
+        return convertedDayName + ", " + day + " " + convertedMonthName + " " + year;
     }
-
-    
 }

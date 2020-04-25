@@ -1,73 +1,78 @@
-package Weather.Converters;
+package Weather.converters;
+
+import java.util.AbstractMap;
+import java.util.Map;
 
 public class WeatherDescriptionTranslator {
 
-    public static String descritpionTranslate (String descr) {
+    public static Map<String, String> TRANSLATIONS = Map.ofEntries(
 
-        switch (descr) {
+            new AbstractMap.SimpleEntry<>("thunderstorm with light rain", "Burza z lekkimi opadami deszczu"),
+            new AbstractMap.SimpleEntry<>("thunderstorm with rain", "Burza z opadami deszczu"),
+            new AbstractMap.SimpleEntry<>("thunderstorm with heavy rain", "Burza z ulewnym deszczem"),
+            new AbstractMap.SimpleEntry<>("light thunderstorm", "Słaba burza z piorunami"),
+            new AbstractMap.SimpleEntry<>("thunderstorm", "Burza z piorunami"),
+            new AbstractMap.SimpleEntry<>("heavy thunderstorm", "Silna burza z piorunami"),
+            new AbstractMap.SimpleEntry<>("ragged thunderstorm", "Burza z przejaśnieniami"),
+            new AbstractMap.SimpleEntry<>("thunderstorm with light drizzle", "Burza z lekką mżawką"),
+            new AbstractMap.SimpleEntry<>("thunderstorm with drizzle", "Burza z mrzawką"),
+            new AbstractMap.SimpleEntry<>("thunderstorm with heavy drizzle", "Burza z gęstą mżawką"),
 
-            case "thunderstorm with light rain": return "Burza z lekkimi opadami deszczu";
-            case "thunderstorm with rain": return "Burza z opadami deszczu";
-            case "thunderstorm with heavy rain": return "Burza z ulewnym deszczem";
-            case "light thunderstorm": return "Słaba burza z piorunami";
-            case "thunderstorm": return "Burza z piorunami";
-            case "heavy thunderstorm": return "Silna burza z piorunami";
-            case "ragged thunderstorm": return "Burza z przejasnieniami";
-            case "thunderstorm with light drizzle": return "Burza z lekką mżawką";
-            case "thunderstorm with drizzle": return "Burza z mrzawką";
-            case "thunderstorm with heavy drizzle": return "Burza z gęstą mżawką";
+            new AbstractMap.SimpleEntry<>("light intensity drizzle", "Lekka mżawka"),
+            new AbstractMap.SimpleEntry<>("drizzle", "Mżawka"),
+            new AbstractMap.SimpleEntry<>("heavy intensity drizzle", "Intensywna mżawka"),
+            new AbstractMap.SimpleEntry<>("light intensity drizzle rain", "Lekka mżawka z deszczem"),
+            new AbstractMap.SimpleEntry<>("drizzle rain", "Mżawka z deszczem"),
+            new AbstractMap.SimpleEntry<>("heavy intensity drizzle rain", "Intensywna mżawka z deszczem"),
+            new AbstractMap.SimpleEntry<>("shower rain and drizzle", "Przelotne opady z mżawką"),
+            new AbstractMap.SimpleEntry<>("heavy shower rain and drizzle", "Przelotna ulewa z mżawką"),
+            new AbstractMap.SimpleEntry<>("shower drizzle", "Przelotna mżawka"),
 
-            case "light intensity drizzle": return "Lekka mżawka";
-            case "drizzle": return "Mżawka";
-            case "heavy intensity drizzle": return "Intensywna mżawka";
-            case "light intensity drizzle rain": return "Lekka mżawka z deszczem";
-            case "drizzle rain": return "Mżawka z deszczem";
-            case "heavy intensity drizzle rain": return "Intensywna mżawka z deszczem";
-            case "shower rain and drizzle": return "Przelotne opady z mżawką";
-            case "heavy shower rain and drizzle": return "Przelotna ulewa z mżawką";
-            case "shower drizzle": return "Przelotna mżawka";
+            new AbstractMap.SimpleEntry<>("light rain", "Lekki deszcz"),
+            new AbstractMap.SimpleEntry<>("moderate rain", "Umiarkowany deszcz"),
+            new AbstractMap.SimpleEntry<>("heavy intensity rain", "Intensywny deszcz"),
+            new AbstractMap.SimpleEntry<>("very heavy rain", "Ulewa"),
+            new AbstractMap.SimpleEntry<>("extreme rain", "Ekstremalna ulewa"),
+            new AbstractMap.SimpleEntry<>("freezing rain", "Marznący deszcz"),
+            new AbstractMap.SimpleEntry<>("light intensity shower rain", "Lekki, przelotny deszcz"),
+            new AbstractMap.SimpleEntry<>("shower rain", "Przelotny deszcz"),
+            new AbstractMap.SimpleEntry<>("heavy intensity shower rain", "Intensywny, przelotny deszcz"),
+            new AbstractMap.SimpleEntry<>("ragged shower rain", "Przelotny deszcz z przejaśnieniami"),
 
-            case "light rain": return "Lekki deszcz";
-            case "moderate rain": return "Umiarkowany deszcz";
-            case "heavy intensity rain": return "Intensywny deszcz";
-            case "very heavy rain": return "Ulewa";
-            case "extreme rain": return "Ekstremalna ulewa";
-            case "freezing rain": return "Marznący deszcz";
-            case "light intensity shower rain": return "Lekki, przelotny deszcz";
-            case "shower rain": return "Przelotny deszcz";
-            case "heavy intensity shower rain": return "Intensywny, przelotny deszcz";
-            case "ragged shower rain": return "Przelotny deszcz z przejaśnieniami";
+            new AbstractMap.SimpleEntry<>("light snow", "Lekki śnieg"),
+            new AbstractMap.SimpleEntry<>("Snow", "Śnieg"),
+            new AbstractMap.SimpleEntry<>("Heavy snow", "Duże opady śniegu"),
+            new AbstractMap.SimpleEntry<>("Sleet", "Śnieg z deszczem"),
+            new AbstractMap.SimpleEntry<>("Light shower sleet", "Lekki, przelotny śnieg z deszczem"),
+            new AbstractMap.SimpleEntry<>("Shower sleet", "Przelotny śnieg z deszczem"),
+            new AbstractMap.SimpleEntry<>("Light rain and snow", "Lekki deszcz ze śniegiem"),
+            new AbstractMap.SimpleEntry<>("Rain and snow", "Deszcz ze śniegiem"),
+            new AbstractMap.SimpleEntry<>("Light shower snow", "Lekki, przelotny śnieg"),
+            new AbstractMap.SimpleEntry<>("Shower snow", "Przelotny śnieg"),
+            new AbstractMap.SimpleEntry<>("Heavy shower snow", "Intensywny, przelotny śnieg"),
 
-            case "light snow": return "Lekki śnieg";
-            case "Snow": return "Śnieg";
-            case "Heavy snow": return "Duże opady śniegu";
-            case "Sleet": return "Śnieg z deszczem";
-            case "Light shower sleet": return "Lekki, przelotny śnieg z deszczem";
-            case "Shower sleet": return "Przelotny śnieg z deszczem";
-            case "Light rain and snow": return "Lekki deszcz ze śniegiem";
-            case "Rain and snow": return "Deszcz ze śniegiem";
-            case "Light shower snow": return "Lekki, przelotny śnieg";
-            case "Shower snow": return "Przelotny śnieg";
-            case "Heavy shower snow": return "Intensywny, przelotny śnieg";
+            new AbstractMap.SimpleEntry<>("mist", "Lekka mgła"),
+            new AbstractMap.SimpleEntry<>("Smoke", "Zadymienie"),
+            new AbstractMap.SimpleEntry<>("Haze", "Lekka, przyziemna mgła"),
+            new AbstractMap.SimpleEntry<>("sand/ dust whirls", "Wiry piasku/pyłu"),
+            new AbstractMap.SimpleEntry<>("fog", "Mgła"),
+            new AbstractMap.SimpleEntry<>("sand", "Piasek"),
+            new AbstractMap.SimpleEntry<>("dust", "Pył"),
+            new AbstractMap.SimpleEntry<>("volcanic ash", "Pył wulkaniczny"),
+            new AbstractMap.SimpleEntry<>("squalls", "Szkwał"),
+            new AbstractMap.SimpleEntry<>("tornado", "Tornado"),
 
-            case "mist": return "Lekka mgła";
-            case "Smoke": return "Zadymienie";
-            case "Haze": return "Lekka, przyziemna mgła";
-            case "sand/ dust whirls": return "Wiry piasku/pyłu";
-            case "fog": return "Mgła";
-            case "sand": return "Piasek";
-            case "dust": return "Pył";
-            case "volcanic ash": return "Pył wulkaniczny";
-            case "squalls": return "Szkwał";
-            case "tornado": return "Tornado";
+            new AbstractMap.SimpleEntry<>("clear sky", "Czyste niebo"),
 
-            case "clear sky": return "Czyste niebo";
+            new AbstractMap.SimpleEntry<>("few clouds", "Lekkie zachmurzenie (11-25%)"),
+            new AbstractMap.SimpleEntry<>("scattered clouds", "Częściowe zachmurzenie (25-50%)"),
+            new AbstractMap.SimpleEntry<>("broken clouds", "Pochmurno (51-84%)"),
+            new AbstractMap.SimpleEntry<>("overcast clouds", "Całkowite zachmurzenie")
+    );
 
-            case "few clouds": return "Lekkie zachmurzenie (11-25%)";
-            case "scattered clouds": return "Częściowe zachmurzenie (25-50%)";
-            case "broken clouds": return "Pochmurno (51-84%)";
-            case "overcast clouds": return "Całkowite zachmurzenie";
-        }
-        return null;
+    public static String translateDescription(String descr) {
+
+        return TRANSLATIONS.getOrDefault(descr, descr);
     }
 }
+

@@ -1,8 +1,8 @@
-package Weather.ForecastFunctions;
+package Weather.forecastFunctions;
 
 import Weather.Interface.BackgroundToday;
 import Weather.Interface.Interface;
-import Weather.Readers.JsonFileReader;
+import Weather.readers.JsonFileReader;
 import com.google.gson.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
