@@ -7,6 +7,7 @@ module TravelWeather {
     requires gson;
     requires controlsfx;
     exports weather;
+    opens weather.controller to javafx.fxml;
     opens weather to javafx.fxml;
 
 }
