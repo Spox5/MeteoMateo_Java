@@ -2,10 +2,11 @@ package weather.model.converters;
 
 import java.util.AbstractMap;
 import java.util.Map;
+import java.time.LocalDate;
 
 public class DateConverter {
 
-    private static Map<String, String> DAYS_MAPPING = Map.of(
+    private static final Map<String, String> DAYS_MAPPING = Map.of(
             "Mon", "Poniedziałek",
             "Tue", "Wtorek",
             "Wed", "Środa",
@@ -15,7 +16,7 @@ public class DateConverter {
             "Sun", "Niedziela"
     );
 
-    private static Map<String, String> MONTHS_MAPPING = Map.ofEntries(
+    private static final Map<String, String> MONTHS_MAPPING = Map.ofEntries(
             new AbstractMap.SimpleEntry<>("Jan", "styczeń"),
             new AbstractMap.SimpleEntry<>("Feb", "luty"),
             new AbstractMap.SimpleEntry<>("Mar", "marzec"),
@@ -32,12 +33,25 @@ public class DateConverter {
 
     public static String convertDate(String date) {
 
-        String rawDay = date.substring(0, 3);
+
+
+        //String rawDay = LocalDate.parse(date).getDayOfWeek().toString();
+        int dayFirstLetter = 0;
+        int dayLastLetter = 3;
+        String rawDay = date.substring(dayFirstLetter, dayLastLetter);
         String convertedDayName = DAYS_MAPPING.getOrDefault(rawDay, rawDay);
-        String monthName = date.substring(4, 7);
+
+        int monthFirstLetter = 4;
+        int monthLastLetter = 7;
+        String monthName = date.substring(monthFirstLetter, monthLastLetter);
         String convertedMonthName = MONTHS_MAPPING.getOrDefault(monthName, monthName);
-        String day = date.substring(8, 10);
-        String year = date.substring(25);
+
+        int dayFirstNumber = 8;
+        int dayLastNumber = 10;
+        String day = date.substring(dayFirstNumber, dayLastNumber);
+
+        int yearFirstNumber = 25;
+        String year = date.substring(yearFirstNumber);
 
         return convertedDayName + ", " + day + " " + convertedMonthName + " " + year;
     }

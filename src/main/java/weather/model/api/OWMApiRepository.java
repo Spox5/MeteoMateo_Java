@@ -7,8 +7,8 @@ import net.aksingh.owmjapis.model.HourlyWeatherForecast;
 
 public class OWMApiRepository {
 
-    OWM owm;
-    String apiKey;
+    private final OWM owm;
+    private final String apiKey;
 
     public OWMApiRepository(String apiKey) {
 

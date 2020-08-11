@@ -7,8 +7,7 @@ import org.controlsfx.control.textfield.TextFields;
 import java.io.Reader;
 import java.util.List;
 
-public class AutoCompleteTextField extends TextField
-{
+public class AutoCompleteTextField extends TextField {
     public static void autoComplete(TextField textField, String filePath) {
 
         Gson gson = new Gson();

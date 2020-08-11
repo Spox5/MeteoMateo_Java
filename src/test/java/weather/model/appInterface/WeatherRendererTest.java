@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import weather.controller.Controller;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -131,7 +132,8 @@ class WeatherRendererTest {
     public void gridPanesShouldBeClear() {
 
         setCurrentNodesToRender();
-        weatherRenderer.clearInterface(currentDayRestHours, dailyPanel);
+        Controller contr = new Controller();
+        contr.clearInterface();
 
         assertThat(currentDayRestHours.getChildren(), is(empty()));
         assertThat(dailyPanel.getChildren(), is(empty()));

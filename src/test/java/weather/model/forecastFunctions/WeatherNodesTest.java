@@ -57,7 +57,7 @@ class WeatherNodesTest {
 
         CurrentWeather currentWeather = OWMRepositoryStub.getCurrentWeather();
 
-        WeatherNodes.getWeatherNowData(currentWeather, backgroundCurrentCity, currentCityCityNameLabel,
+        WeatherNodes.setWeatherNowData(currentWeather, backgroundCurrentCity, currentCityCityNameLabel,
                 currentCityDateLabel, currentCityTemperatureLabel, currentCityHumidityLabel, currentCityPressureLabel,
                 currentCityIconWeather, currentCityDescriptionLabel);
 

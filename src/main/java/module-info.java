@@ -1,4 +1,4 @@
-module TravelWeather {
+module MeteoMateo {
 
     requires javafx.fxml;
     requires javafx.controls;

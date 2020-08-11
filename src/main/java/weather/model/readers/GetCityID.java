@@ -7,6 +7,8 @@ import javafx.scene.control.TextField;
 import weather.config.Config;
 import weather.model.exception.InvalidCityNameException;
 
+import java.util.List;
+
 public class GetCityID {
 
     public static int getCityID(TextField textBox) throws InvalidCityNameException {

@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML Button currentOK = new Button();
+    @FXML Button targetOK = new Button();
 
     // CURRENT PANEL //
     @FXML Label infoCurrent = new Label();
@@ -68,7 +69,7 @@ public class Controller implements Initializable {
     @FXML GridPane dailyPanelTargetCity = new GridPane();
     // END FUTURE PANEL //
 
-    private OWMApiRepository owmApiRepository;
+    private final OWMApiRepository owmApiRepository;
     private WeatherNodes todayWeatherCurrentNodes;
     private WeatherNodes todayWeatherTargetNodes;
     private WeatherRenderer weatherCurrentRenderer;
@@ -93,33 +94,39 @@ public class Controller implements Initializable {
         } catch (Exception e) {
             infoCurrent.setText("Plik źródłowy nie znaleziony. Skontaktuj się z autorem lub pobierz repozytorium ponownie");
             infoTarget.setText("Plik źródłowy nie znaleziony. Skontaktuj się z autorem lub pobierz repozytorium ponownie");
+            e.printStackTrace();
+            currentOK.setDisable(true);
+            targetOK.setDisable(true);
         }
     }
 
     public void findCurrentCity() {
 
         try {
-            WeatherRenderer.clearInterface(currentDayCurrentCityRestHours, dailyPanelCurrentCity);
+            clearInterface();
             weatherCurrentRenderer.show();
             todayWeatherCurrentNodes.setNodesValues(owmApiRepository, GetCityID.getCityID(cityNameCurrent));
 
         } catch (APIException e) {
-            e.printStackTrace();
-            weatherCurrentRenderer.showError("Błędna miejscowość.");
+            logError(e, "Błędna miejscowość.");
 
         } catch (InvalidCityNameException e) {
-            e.printStackTrace();
-            weatherCurrentRenderer.showError("Wpisz nazwę miejscowości.");
+            logError(e, "Wpisz nazwę miejscowości.");
 
         } catch (IllegalArgumentException e) {
-            weatherCurrentRenderer.showError("Brak/nieprawidłowy klucz API. Pobierz klucz API OpenWeatherMap.");
+            logError(e, "Brak/nieprawidłowy klucz API. Pobierz klucz API OpenWeatherMap.");
         }
+    }
+
+    private void logError (Exception e, String infoText) {
+        e.printStackTrace();
+        weatherCurrentRenderer.showError(infoText);
     }
 
     public void findTargetCity() {
 
         try {
-            WeatherRenderer.clearInterface(currentDayTargetCityRestHours, dailyPanelTargetCity);
+            clearInterface();
             weatherTargetRenderer.show();
             todayWeatherTargetNodes.setNodesValues(owmApiRepository, GetCityID.getCityID(cityNameTarget));
         } catch (APIException e) {
@@ -133,6 +140,12 @@ public class Controller implements Initializable {
         } catch (IllegalArgumentException e) {
             weatherTargetRenderer.showError("Brak/nieprawidłowy klucz API. Pobierz klucz API OpenWeatherMap.");
         }
+    }
+
+    public void clearInterface() {
+
+        currentDayCurrentCityRestHours.getChildren().clear();
+        dailyPanelCurrentCity.getChildren().clear();
     }
 
     public void setCurrentNodesValues() {

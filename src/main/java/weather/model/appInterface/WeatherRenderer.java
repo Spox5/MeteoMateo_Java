@@ -7,21 +7,21 @@ import javafx.scene.layout.GridPane;
 
 public class WeatherRenderer {
 
-    Label info;
-    AnchorPane background;
-    Label currentCityCityNameLabel;
-    Label currentCityDateLabel;
-    Label currentCityTemperatureLabelInstrciption;
-    Label currentCityTemperatureLabel;
-    Label currentCityHumidityLabelInstrciption;
-    Label currentCityHumidityLabel;
-    Label currentCityPressureLabelInstrciption;
-    Label currentCityPressureLabel;
-    ImageView currentCityIconWeather;
-    Label currentCityDescriptionLabel;
-    Label currentDayRestHoursInstrciption;
-    GridPane currentDayRestHours;
-    GridPane dailyPanel;
+    private final Label info;
+    private final AnchorPane background;
+    private final Label currentCityCityNameLabel;
+    private final Label currentCityDateLabel;
+    private final Label currentCityTemperatureLabelInstrciption;
+    private final Label currentCityTemperatureLabel;
+    private final Label currentCityHumidityLabelInstrciption;
+    private final Label currentCityHumidityLabel;
+    private final Label currentCityPressureLabelInstrciption;
+    private final Label currentCityPressureLabel;
+    private final ImageView currentCityIconWeather;
+    private final Label currentCityDescriptionLabel;
+    private final Label currentDayRestHoursInstrciption;
+    private final GridPane currentDayRestHours;
+    private final GridPane dailyPanel;
 
     public WeatherRenderer(Label info, AnchorPane background, Label currentCityCityNameLabel,
                            Label currentCityDateLabel, Label currentCityTemperatureLabelInstrciption,
@@ -88,11 +88,4 @@ public class WeatherRenderer {
         currentDayRestHours.setVisible(false);
         dailyPanel.setVisible(false);
     }
-
-    public static void clearInterface(GridPane today, GridPane restDays) {
-
-        today.getChildren().clear();
-        restDays.getChildren().clear();
-    }
-
 }

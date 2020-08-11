@@ -22,16 +22,16 @@ import weather.model.converters.WeatherDescriptionTranslator;
 
 public class WeatherNodes {
 
-   private AnchorPane backgroundCurrentCity;
-   private Label currentCityCityNameLabel;
-   private Label currentCityDateLabel;
-   private Label currentCityTemperatureLabel;
-   private Label currentCityHumidityLabel;
-   private Label currentCityPressureLabel;
-   private ImageView currentCityIconWeather;
-   private Label currentCityDescriptionLabel;
-   private GridPane currentDayCurrentCityRestHours;
-   private GridPane dailyPanel;
+   private final AnchorPane backgroundCurrentCity;
+   private final Label currentCityCityNameLabel;
+   private final Label currentCityDateLabel;
+   private final Label currentCityTemperatureLabel;
+   private final Label currentCityHumidityLabel;
+   private final Label currentCityPressureLabel;
+   private final ImageView currentCityIconWeather;
+   private final Label currentCityDescriptionLabel;
+   private final GridPane currentDayCurrentCityRestHours;
+   private final GridPane dailyPanel;
 
     public WeatherNodes(AnchorPane backgroundCurrentCity,
                         Label currentCityCityNameLabel, Label currentCityDateLabel,
@@ -57,17 +57,17 @@ public class WeatherNodes {
         CurrentWeather currentWeather = owmApiRepository.fetchWeatherForCity(cityID);
         HourlyWeatherForecast hourlyWeatherForecast = owmApiRepository.fetchHourlyWeatherForecast(cityID);
 
-        getWeatherNowData(currentWeather, backgroundCurrentCity, currentCityCityNameLabel, currentCityDateLabel,
+        setWeatherNowData(currentWeather, backgroundCurrentCity, currentCityCityNameLabel, currentCityDateLabel,
                 currentCityTemperatureLabel, currentCityHumidityLabel, currentCityPressureLabel,
                 currentCityIconWeather, currentCityDescriptionLabel);
 
-        getWeatherTodayLaterData(hourlyWeatherForecast, DateConverter.convertDate(String.valueOf(currentWeather.getDateTime())), currentDayCurrentCityRestHours);
+        setWeatherTodayLaterData(hourlyWeatherForecast, DateConverter.convertDate(String.valueOf(currentWeather.getDateTime())), currentDayCurrentCityRestHours);
 
-        getWeatherNextDaysData(hourlyWeatherForecast, DateConverter.convertDate(String.valueOf(currentWeather.getDateTime())), dailyPanel);
+        setWeatherNextDaysData(hourlyWeatherForecast, DateConverter.convertDate(String.valueOf(currentWeather.getDateTime())), dailyPanel);
 
     }
 
-    public static void getWeatherNowData(CurrentWeather currentWeather,
+    public static void setWeatherNowData(CurrentWeather currentWeather,
                                          AnchorPane backgroundCurrentCity, Label currentCityCityNameLabel,
                                          Label currentCityDateLabel,
                                          Label currentCityTemperatureLabel,
@@ -86,7 +86,8 @@ public class WeatherNodes {
                 .getDescription()));
     }
 
-    public static void getWeatherTodayLaterData(HourlyWeatherForecast hourlyWeatherForecast, String city, GridPane currentDayRestHoursForecastPanel) {
+    private static void setWeatherTodayLaterData(HourlyWeatherForecast hourlyWeatherForecast, String city,
+                                                 GridPane currentDayRestHoursForecastPanel) {
 
         int column = 0;
 
@@ -94,17 +95,17 @@ public class WeatherNodes {
 
             if (DateConverter.convertDate(String.valueOf(hourlyWeatherForecast.getDataList().get(i).getDateTime())).equals(city)) {
 
-                String substring = hourlyWeatherForecast.getDataList().get(i).getDateTimeText().substring(11, 13);
-                if ("06".equals(substring) || "09".equals(substring) || "12".equals(substring) || "15".equals(substring) || "18".equals(substring)) {
-                    getWeatherOneNextDayData(hourlyWeatherForecast, currentDayRestHoursForecastPanel, column, 0, i);
+                String hourOfDay = hourlyWeatherForecast.getDataList().get(i).getDateTimeText().substring(11, 13);
+                if ("06".equals(hourOfDay) || "09".equals(hourOfDay) || "12".equals(hourOfDay) || "15".equals(hourOfDay) || "18".equals(hourOfDay)) {
+                    setWeatherOneNextDayData(hourlyWeatherForecast, currentDayRestHoursForecastPanel, column, 0, i);
                     column = column + 1;
                 }
             }
         }
     }
 
-    public static void getWeatherNextDaysData(HourlyWeatherForecast hourlyWeatherForecast, String city,
-                                              GridPane dailyPanel) {
+    private static void setWeatherNextDaysData(HourlyWeatherForecast hourlyWeatherForecast, String city,
+                                               GridPane dailyPanel) {
         int rowIndexDate = 0;
         int rowIndexWeather = 1;
         int column = 0;
@@ -113,8 +114,8 @@ public class WeatherNodes {
 
             if (!DateConverter.convertDate(String.valueOf(hourlyWeatherForecast.getDataList().get(i).getDateTime())).equalsIgnoreCase(city)) {
 
-                String substring = hourlyWeatherForecast.getDataList().get(i).getDateTimeText().substring(11, 13);
-                if ("06".equals(substring)) {
+                String hourOfDay = hourlyWeatherForecast.getDataList().get(i).getDateTimeText().substring(11, 13);
+                if ("06".equals(hourOfDay)) {
                     VBox dailyDate = new VBox();
                     dailyDate.setSpacing(15);
 
@@ -130,13 +131,13 @@ public class WeatherNodes {
                     dailyPanel.add(dailyDate, 0, rowIndexDate, 5, 1);
 
                     column = 0;
-                    getWeatherOneNextDayData(hourlyWeatherForecast, dailyPanel, column, rowIndexWeather, i);
+                    setWeatherOneNextDayData(hourlyWeatherForecast, dailyPanel, column, rowIndexWeather, i);
                     column = column + 1;
-                } else if ("09".equals(substring) || "12".equals(substring) || "15".equals(substring)) {
-                    getWeatherOneNextDayData(hourlyWeatherForecast, dailyPanel, column, rowIndexWeather, i);
+                } else if ("09".equals(hourOfDay) || "12".equals(hourOfDay) || "15".equals(hourOfDay)) {
+                    setWeatherOneNextDayData(hourlyWeatherForecast, dailyPanel, column, rowIndexWeather, i);
                     column = column + 1;
-                } else if ("18".equals(substring)) {
-                    getWeatherOneNextDayData(hourlyWeatherForecast, dailyPanel, column, rowIndexWeather, i);
+                } else if ("18".equals(hourOfDay)) {
+                    setWeatherOneNextDayData(hourlyWeatherForecast, dailyPanel, column, rowIndexWeather, i);
                     column = column + 1;
 
                     rowIndexWeather = rowIndexWeather + 2;
@@ -146,7 +147,7 @@ public class WeatherNodes {
         }
     }
 
-    public static void getWeatherOneNextDayData(HourlyWeatherForecast hourlyWeatherForecast, GridPane dailyPanel, int columnIndex, int rowIndexWeather, int i) {
+    private static void setWeatherOneNextDayData(HourlyWeatherForecast hourlyWeatherForecast, GridPane dailyPanel, int columnIndex, int rowIndexWeather, int i) {
 
         VBox hourData = new VBox();
         hourData.setPadding(new Insets(5, 0, 15, 0));
