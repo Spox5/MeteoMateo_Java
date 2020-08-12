@@ -20,7 +20,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="MeteoMateo" target="1.9" />
+      <module name="DeteoDateo" target="9" />
+      <module name="MeteoMateo" target="9" />
     </bytecodeTargetLevel>
   </component>
 </project>

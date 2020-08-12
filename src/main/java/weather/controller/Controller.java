@@ -1,12 +1,5 @@
 package weather.controller;
 
-import net.aksingh.owmjapis.api.APIException;
-import weather.config.Config;
-import weather.model.appInterface.WeatherRenderer;
-import weather.model.exception.InvalidCityNameException;
-import weather.model.forecastFunctions.WeatherNodes;
-import weather.model.readers.AutoCompleteTextField;
-import weather.model.api.OWMApiRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,9 +8,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import weather.model.readers.GetCityID;
+import net.aksingh.owmjapis.api.APIException;
+import weather.config.Config;
+import weather.model.readers.CitiesCollection;
+import weather.model.readers.JSONConverter;
+import weather.model.api.OWMApiRepository;
+import weather.model.appInterface.WeatherRenderer;
+import weather.model.exception.InvalidCityNameException;
+import weather.model.forecastFunctions.WeatherNodes;
+import weather.model.readers.AutoCompleteTextField;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -75,6 +77,8 @@ public class Controller implements Initializable {
     private WeatherRenderer weatherCurrentRenderer;
     private WeatherRenderer weatherTargetRenderer;
 
+    private Map<String, Integer> citiesMap;
+
     public Controller() {
         owmApiRepository = new OWMApiRepository(Config.API_KEY);
     }
@@ -83,13 +87,16 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
+            JSONConverter jsonConverter = new JSONConverter();
+            citiesMap = jsonConverter.getCitiesMapFromJSON(Config.CITY_LIST_WITH_DATA);
+
             setCurrentNodesValues();
             setTargetNodesValues();
             setCurrentNodesToRender();
             setTargetNodesToRender();
 
-            AutoCompleteTextField.autoComplete(cityNameTarget, Config.CITIES_NAMES);
-            AutoCompleteTextField.autoComplete(cityNameCurrent, Config.CITIES_NAMES);
+            AutoCompleteTextField.autoComplete(cityNameTarget, citiesMap);
+            AutoCompleteTextField.autoComplete(cityNameCurrent, citiesMap);
 
         } catch (Exception e) {
             infoCurrent.setText("Plik źródłowy nie znaleziony. Skontaktuj się z autorem lub pobierz repozytorium ponownie");
@@ -105,7 +112,8 @@ public class Controller implements Initializable {
         try {
             clearInterface();
             weatherCurrentRenderer.show();
-            todayWeatherCurrentNodes.setNodesValues(owmApiRepository, GetCityID.getCityID(cityNameCurrent));
+            String cityName = cityNameCurrent.getText();
+            todayWeatherCurrentNodes.setNodesValues(owmApiRepository, CitiesCollection.getCityId(cityName, citiesMap));
 
         } catch (APIException e) {
             logError(e, "Błędna miejscowość.");
@@ -128,7 +136,8 @@ public class Controller implements Initializable {
         try {
             clearInterface();
             weatherTargetRenderer.show();
-            todayWeatherTargetNodes.setNodesValues(owmApiRepository, GetCityID.getCityID(cityNameTarget));
+            String cityName = cityNameTarget.getText();
+            todayWeatherTargetNodes.setNodesValues(owmApiRepository, CitiesCollection.getCityId(cityName, citiesMap));
         } catch (APIException e) {
             e.printStackTrace();
             weatherTargetRenderer.showError("Błędna miejscowość.");

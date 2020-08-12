@@ -1,20 +1,14 @@
 package weather.model.readers;
 
-import com.google.gson.Gson;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.textfield.TextFields;
 
-import java.io.Reader;
-import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AutoCompleteTextField extends TextField {
-    public static void autoComplete(TextField textField, String filePath) {
 
-        Gson gson = new Gson();
-
-        Reader fileWithCitiesNameReader = JsonFileReader.readJsonFile(filePath);
-
-        List<String> listOfCitiesName = gson.fromJson(fileWithCitiesNameReader, List.class);
-        TextFields.bindAutoCompletion(textField, listOfCitiesName);
+    public static void autoComplete(TextField textField, Map<String, Integer> map) {
+        TextFields.bindAutoCompletion(textField, t -> map.keySet().stream().filter(elem -> elem.toLowerCase().startsWith(t.getUserText().toLowerCase())).collect(Collectors.toList()));
     }
 }
